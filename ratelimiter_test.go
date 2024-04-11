@@ -1,7 +1,7 @@
 package ratelimiter_test
 
 import (
-	"roach-laboratary/ratelimiter"
+	"ratelimiter"
 	"sync"
 	"testing"
 	"time"

@@ -1,4 +1,4 @@
-module roach-laboratary/ratelimiter
+module ratelimiter
 
 go 1.22.2
 
