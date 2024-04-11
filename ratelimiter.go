@@ -1,6 +1,7 @@
 package ratelimiter
 
 import (
+	"errors"
 	"sync"
 
 	"go.uber.org/ratelimit"
@@ -44,9 +45,13 @@ func NewRateLimiter(Key string, threshold int) *RateLimiterBasedOnKey {
 }
 
 // Take is a method to take a token from the rate limiter
-func (r *RateLimiterBasedOnKey) Take(key string) {
-	limiter := r.limiters[key]
-	limiter.mux.Lock()
-	defer limiter.mux.Unlock()
-	limiter.Limiter.Take()
+func (r *RateLimiterBasedOnKey) Take(key string) error {
+	if limiter, exists := r.limiters[key]; exists {
+		limiter.mux.Lock()
+		defer limiter.mux.Unlock()
+		limiter.Limiter.Take()
+	}
+
+	// throw an error if the key does not exist
+	return errors.New("key does not exist")
 }

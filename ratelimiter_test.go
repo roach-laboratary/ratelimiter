@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	ratelimiter "github.com/roach-laboratary/ratelimiter"
+	"github.com/roach-laboratary/ratelimiter"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -68,4 +68,12 @@ func TestRateLimiter_Tak2(t *testing.T) {
 	if elapsed > 10*time.Second {
 		t.Errorf("Execution time was %v, expected it to be under 10 seconds", elapsed)
 	}
+}
+
+func TestTakeIfThereisNoKey(t *testing.T) {
+	key := "test"
+	limiter := ratelimiter.NewRateLimiter(key, 1)
+
+	err := limiter.Take("test2")
+	assert.NotNil(t, err)
 }
