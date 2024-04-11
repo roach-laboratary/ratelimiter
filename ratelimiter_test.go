@@ -77,3 +77,12 @@ func TestTakeIfThereisNoKey(t *testing.T) {
 	err := limiter.Take("test2")
 	assert.NotNil(t, err)
 }
+
+func TestCreateKeyIfThereisNoKey(t *testing.T) {
+	key := "test"
+	limiter := ratelimiter.NewRateLimiter(key, 1)
+	limiter.CreateKey("test2", 1)
+
+	err := limiter.Take("test2")
+	assert.Nil(t, err)
+}
