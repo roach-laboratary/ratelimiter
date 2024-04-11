@@ -1,11 +1,11 @@
 package ratelimiter_test
 
 import (
-	"ratelimiter"
 	"sync"
 	"testing"
 	"time"
 
+	ratelimiter "github.com/roach-laboratary/ratelimite"
 	"github.com/stretchr/testify/assert"
 )
 
