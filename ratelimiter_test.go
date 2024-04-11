@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	ratelimiter "github.com/roach-laboratary/ratelimite"
+	ratelimiter "github.com/roach-laboratary/ratelimiter"
 	"github.com/stretchr/testify/assert"
 )
 

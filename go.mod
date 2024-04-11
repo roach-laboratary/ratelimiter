@@ -1,4 +1,4 @@
-module github.com/roach-laboratary/ratelimite
+module github.com/roach-laboratary/ratelimiter
 
 go 1.22.2
 
