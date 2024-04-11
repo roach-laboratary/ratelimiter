@@ -59,9 +59,13 @@ func (r *RateLimiterBasedOnKey) Take(key string) error {
 }
 
 // Create key is a method to create a new key in the rate limiter
+// If key already exists, it just skips the creation
 func (r *RateLimiterBasedOnKey) CreateKey(key string, threshold int) {
 	r.mux.Lock()
 	defer r.mux.Unlock()
+	if _, exists := r.limiters[key]; exists {
+		return
+	}
 	syncedLimiter := &SyncedLimiter{
 		Limiter: ratelimit.New(threshold),
 	}
